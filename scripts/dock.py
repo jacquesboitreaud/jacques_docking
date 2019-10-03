@@ -24,7 +24,7 @@ grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
 grid_score_vdw_scale                                         1
 grid_score_es_scale                                          1
-grid_score_grid_prefix                                       grid
+grid_score_grid_prefix                                       {osp.join(pdb_path, 'grid')}
 multigrid_score_secondary                                    no
 dock3.5_score_secondary                                      no
 continuous_score_secondary                                   no
@@ -92,7 +92,7 @@ grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
 grid_score_vdw_scale                                         1
 grid_score_es_scale                                          1
-grid_score_grid_prefix                                       grid
+grid_score_grid_prefix                                       {osp.join(pdb_path, 'grid')}
 multigrid_score_secondary                                    no
 dock3.5_score_secondary                                      no
 continuous_score_secondary                                   no
@@ -157,7 +157,7 @@ grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
 grid_score_vdw_scale                                         1
 grid_score_es_scale                                          1
-grid_score_grid_prefix                                       grid
+grid_score_grid_prefix                                       {osp.join(pdb_path, 'grid')}
 multigrid_score_secondary                                    no
 dock3.5_score_secondary                                      no
 continuous_score_secondary                                   no
