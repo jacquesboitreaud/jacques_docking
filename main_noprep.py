@@ -18,7 +18,10 @@ import pybel
 import argparse
 import uuid
 
-from scripts.dock import minimize_contact, contact_docking
+
+from scripts.spheres import spheres
+from scripts.boxgrid import box, grid
+from scripts.dock import minimize, contact_docking
 from scripts.get_ligands import from_smiles
 
 def cline():
@@ -57,9 +60,21 @@ def main(args):
 
     for pdbid in os.listdir(pdb_path):
         
+        print(">>> PREPARING RECEPTOR")
+        subprocess.call(['chimera', '--nogui', '--script',
+            f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
+    
+        print(">>> CREATING SPHERES")
+        spheres(pdbid, dock_files)
+
+        print(">>> CREATING BOX AND GRID")
+        box(pdbid, dock_files)
+
+        print(">>> CREATING GRID")
+        grid(pdbid, dock_files, dock_path)
 
         print(">>> MINIMIZING")
-       # minimize_contact(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
+        minimize(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
 
         print(">>> DOCKING")
         contact_docking(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
@@ -70,9 +85,3 @@ if __name__ == "__main__":
     cline()
 
 pass
-
-"""
-smi = 'COc1ccccc1OC(=O)Oc1ccccc1OC'
-
-# Reading scores : 
-"""

@@ -4,6 +4,11 @@ import subprocess
 
 from .utils import *
 
+"""
+Update : 
+Modified the input file to compute both energy and contact grids 
+"""
+
 def box(pdb_path, write_dir):
     params = f"""Y
 8.0
@@ -23,7 +28,7 @@ def grid(pdb_path, write_dir, dock_path):
     params = f"""compute_grids        yes
 grid_spacing                              0.4
 output_molecule                           no
-contact_score                             no
+contact_score                             yes
 energy_score                              yes
 energy_cutoff_distance                    9999
 atom_model                                a
