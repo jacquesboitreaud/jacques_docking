@@ -78,7 +78,7 @@ use_rmsd_reference_mol                                       {add_suffix_new_pat
 use_database_filter                                          no
 orient_ligand                                                yes
 automated_matching                                           yes
-receptor_site_file                                           {osp.join(write_dir, 'selected_spheres.sph')}
+receptor_site_file                                           {osp.join(pdb_path, 'selected_spheres.sph')}
 max_orientations                                             1000
 critical_points                                              no
 chemical_matching                                            no
@@ -143,7 +143,7 @@ use_rmsd_reference_mol                                       {add_suffix_new_pat
 use_database_filter                                          no
 orient_ligand                                                yes
 automated_matching                                           yes
-receptor_site_file                                           {osp.join(write_dir, 'selected_spheres.sph')}
+receptor_site_file                                           {osp.join(pdb_path, 'selected_spheres.sph')}
 max_orientations                                             1000
 critical_points                                              no
 chemical_matching                                            no
