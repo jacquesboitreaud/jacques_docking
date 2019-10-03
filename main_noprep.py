@@ -11,6 +11,7 @@ Main script to perform DOCK contact scoring given an input SMILES of a ligand
 import os
 import sys
 sys.path.append('../')
+sys.path.append('../scripts')
 
 import subprocess
 import pybel
@@ -19,7 +20,6 @@ import uuid
 
 from scripts.dock import minimize, contact_docking
 from scripts.get_ligands import from_smiles
-from scripts.utils import *
 
 def cline():
 
