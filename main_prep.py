@@ -63,13 +63,14 @@ def main(args):
 
     dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
+    pdb_file='receptor.pdb'
 
 
     for pdbid in os.listdir(args.pdb):
 
         print(">>> PREPARING RECEPTOR")
         subprocess.call(['chimera', '--nogui', '--script',
-            f'scripts/prep.py {os.path.join(args.pdb, pdbid, receptor.mol2)} {dock_files}'])
+            f'scripts/prep.py {os.path.join(args.pdb, pdbid, pdb_file)} {dock_files}'])
     
         print(">>> CREATING SPHERES")
         spheres(pdbid, dock_files)
