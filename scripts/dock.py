@@ -1,5 +1,5 @@
 import subprocess
-from utils import *
+from scripts.utils import *
 
 
 def minimize(pdb_path, write_dir, dock_path): 
