@@ -100,4 +100,13 @@ def from_smiles(smi):
         mol.make3D()
         txt = mol.write('mol2')
         f.write(txt)
+        
+        # Add fake entry
+        mol = pybel.readstring("smi", 'c1ccccc1')
+        mol.addh()
+        mol.make3D()
+        txt = mol.write('mol2')
+        f.write(txt)
+        
+        
         f.close()

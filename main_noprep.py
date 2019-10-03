@@ -59,7 +59,7 @@ def main(args):
         
 
         print(">>> MINIMIZING")
-        #minimize_contact(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
+        minimize_contact(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
 
         print(">>> DOCKING")
         contact_docking(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
