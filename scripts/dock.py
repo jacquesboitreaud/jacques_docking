@@ -80,7 +80,7 @@ limit_max_ligands                                            no
 skip_molecule                                                no
 read_mol_solvation                                           no
 calculate_rmsd                                               yes
-use_rmsd_reference_mol                                       {add_suffix_new_path(pdb_path, write_dir, '.lig.min_scored.mol2')}
+use_rmsd_reference_mol                                       no
 use_database_filter                                          no
 orient_ligand                                                yes
 automated_matching                                           yes
