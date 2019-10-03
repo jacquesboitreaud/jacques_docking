@@ -2,7 +2,7 @@ import subprocess
 from scripts.utils import *
 
 
-def minimize(pdb_path, write_dir, ligands_path, dock_path, params_path): 
+def minimize_contact(pdb_path, write_dir, ligands_path, dock_path, params_path): 
     params = f"""conformer_search_type       rigid
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
@@ -17,9 +17,9 @@ use_database_filter                                          no
 orient_ligand                                                no
 bump_filter                                                  no
 score_molecules                                              yes
-contact_score_primary                                        no
+contact_score_primary                                        yes
 contact_score_secondary                                      no
-grid_score_primary                                           yes
+grid_score_primary                                           no
 grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
 grid_score_vdw_scale                                         1
