@@ -18,7 +18,7 @@ import pybel
 import argparse
 import uuid
 
-from scripts.dock import minimize, contact_docking
+from scripts.dock import minimize_contact, contact_docking
 from scripts.get_ligands import from_smiles
 
 def cline():
