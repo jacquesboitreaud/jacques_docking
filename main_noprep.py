@@ -25,9 +25,9 @@ def cline():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
-    parser.add_argument("-i", "--pdb", default='data/pockets', help="Folder containing PDBs to dock")
+    parser.add_argument("-i", "--pdb", default='/home/mcb/jboitr/data/pockets', help="Folder containing PDBs to dock")
     parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
-    parser.add_argument("-l", "--lib", default='data/ligands/mymols.mol2', help="mol2 file containing ligands")
+    parser.add_argument("-l", "--lib", default='/home/mcb/jboitr/data/ligands/mymols.mol2', help="mol2 file containing ligands")
     parser.add_argument("-d", "--dock-path", default='/home/mcb/jboitr/dock/dock6', help="Path to dock install.")
     parser.add_argument("-m", "--molecule-type", default='protein', help="Type of receptor (rna, or protein).")
     parser.add_argument("-a", "--amber-scoring", default=False, help="Use slower but more accurate AMBER scoring.")
