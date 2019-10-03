@@ -2,7 +2,7 @@ import subprocess
 from scripts.utils import *
 
 
-def minimize(pdb_path, write_dir, dock_path): 
+def minimize(pdb_path, write_dir, dock_path, params_path): 
     params = f"""conformer_search_type       rigid
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
@@ -48,9 +48,9 @@ simplex_random_seed                                          0
 simplex_restraint_min                                        yes
 simplex_coefficient_restraint                                10.0
 atom_model                                                   all
-vdw_defn_file                                                {osp.join(dock_path, 'parameters/vdw_AMBER_parm99.defn')}
-flex_defn_file                                               {osp.join(dock_path, 'parameters/flex.defn')}
-flex_drive_file                                              {osp.join(dock_path, 'parameters/flex_drive.tbl')}
+vdw_defn_file                                                {osp.join(params_path, 'vdw_AMBER_parm99.defn')}
+flex_defn_file                                               {osp.join(params_path, 'flex.defn')}
+flex_drive_file                                              {osp.join(params_path, 'flex_drive.tbl')}
 ligand_outfile_prefix                                        {add_suffix_new_path(pdb_path, write_dir, '.lig.min')}
 write_orientations                                           no
 num_scored_conformers                                        1
@@ -63,7 +63,7 @@ rank_ligands                                                 no
     subprocess.call(["dock6.mpi","-np 1 ", "-i", osp.join(write_dir, "min.in")])
 
 
-def docking(pdb_path, write_dir, ligands_path, dock_path):
+def docking(pdb_path, write_dir, ligands_path, dock_path, params_path):
 
     params = f"""conformer_search_type              rigid
 use_internal_energy                                          yes
@@ -115,9 +115,9 @@ simplex_tors_step                                            10.0
 simplex_random_seed                                          0
 simplex_restraint_min                                        no
 atom_model                                                   all
-vdw_defn_file                                                {osp.join(dock_path, 'parameters/vdw_AMBER_parm99.defn')}
-flex_defn_file                                               {osp.join(dock_path, 'parameters/flex.defn')}
-flex_drive_file                                              {osp.join(dock_path, 'parameters/flex_drive.tbl')}
+vdw_defn_file                                                {osp.join(params_path, 'parameters/vdw_AMBER_parm99.defn')}
+flex_defn_file                                               {osp.join(params_path, 'parameters/flex.defn')}
+flex_drive_file                                              {osp.join(params_path, 'parameters/flex_drive.tbl')}
 ligand_outfile_prefix                                        {osp.join(write_dir, 'rigid.out')}
 write_orientations                                           no
 num_scored_conformers                                        1
