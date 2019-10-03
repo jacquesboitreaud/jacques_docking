@@ -191,7 +191,7 @@ rank_ligands                                                 no
 
     with open(osp.join(write_dir, "rigid.in"), "w") as r:
         r.write(params)
-    subprocess.call(["mpirun dock6.mpi","-np 1 " "-i", osp.join(write_dir, "rigid.in")])
+    subprocess.call(["dock6.mpi","-np 1 " "-i", osp.join(write_dir, "rigid.in")])
 
 def amber_dock(receptor_prefix, ligand_path, work_dir):
     root = os.getcwd()
