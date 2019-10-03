@@ -60,7 +60,7 @@ rank_ligands                                                 no
     with open(osp.join(write_dir, "min.in"), "w") as m:
         m.write(params)
 
-    subprocess.call(["miprun dock6.mpi","-np 1 ", "-i", osp.join(write_dir, "min.in")])
+    subprocess.call(["dock6.mpi","-np 1 ", "-i", osp.join(write_dir, "min.in")])
 
 
 def docking(pdb_path, write_dir, ligands_path, dock_path):
@@ -126,7 +126,7 @@ rank_ligands                                                 no
 
     with open(osp.join(write_dir, "rigid.in"), "w") as r:
         r.write(params)
-    subprocess.call(["mpirun dock6.mpi", "-np 1 ", "-i", osp.join(write_dir, "rigid.in")])
+    subprocess.call(["dock6.mpi", "-np 1 ", "-i", osp.join(write_dir, "rigid.in")])
     
 def contact_docking(pdb_path, write_dir, ligands_path, dock_path):
 
