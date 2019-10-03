@@ -6,6 +6,7 @@
 """
 import os
 import sys
+import pybel
 
 if __name__ == "__main__":
     sys.path.append('..')

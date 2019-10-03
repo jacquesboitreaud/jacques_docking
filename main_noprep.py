@@ -12,7 +12,7 @@ import os
 import sys
 
 import subprocess
-import pybel, openbabel
+import pybel
 import argparse
 import uuid
 
