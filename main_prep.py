@@ -69,7 +69,7 @@ def main(args):
 
         print(">>> PREPARING RECEPTOR")
         subprocess.call(['chimera', '--nogui', '--script',
-            f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
+            f'scripts/prep.py {os.path.join(args.pdb, pdbid, receptor.mol2)} {dock_files}'])
     
         print(">>> CREATING SPHERES")
         spheres(pdbid, dock_files)
