@@ -30,9 +30,9 @@ def cline():
     parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
     parser.add_argument("-l", "--lib", default='/home/mcb/jboitr/data/ligands/mymols.mol2', help="mol2 file containing ligands")
     parser.add_argument("-d", "--dock-path", default='/home/mcb/jboitr/dock/dock6/bin', help="Path to dock install.")
+    parser.add_argument("-p", "--parameters-path", default='/home/mcb/jboitr/dock/dock6/parameters', help="Path to dock params.")
     parser.add_argument("-m", "--molecule-type", default='protein', help="Type of receptor (rna, or protein).")
     parser.add_argument("-a", "--amber-scoring", default=False, help="Use slower but more accurate AMBER scoring.")
-
     args = parser.parse_args()
 
     main(args)
@@ -49,6 +49,7 @@ def main(args):
 
     dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
+    params_path=args.parameters_path
     
     print(">>> GENERATING LIGAND MOL2")
     from_smiles(args.smiles)
@@ -60,7 +61,7 @@ def main(args):
         minimize(pdbid, dock_files, dock_path)
 
         print(">>> DOCKING")
-        contact_docking(pdbid, dock_files, args.lib, dock_path)
+        contact_docking(pdbid, dock_files, args.lib, dock_path, params_path)
 
 
 if __name__ == "__main__":
