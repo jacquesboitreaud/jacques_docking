@@ -10,6 +10,7 @@ Main script to perform DOCK contact scoring given an input SMILES of a ligand
 
 import os
 import sys
+sys.path.append('..')
 
 import subprocess
 import pybel
