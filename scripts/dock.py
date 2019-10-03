@@ -19,6 +19,10 @@ bump_filter                                                  no
 score_molecules                                              yes
 contact_score_primary                                        yes
 contact_score_secondary                                      no
+contact_score_grid_prefix                                    {osp.join(pdb_path, 'grid')}
+contact_score_cutoff_distance                                4.5
+contact_score_clash_overlap                                  0.75
+contact_score_clash_penalty                                  50
 grid_score_primary                                           no
 grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
@@ -152,6 +156,10 @@ bump_filter                                                  no
 score_molecules                                              yes
 contact_score_primary                                        yes
 contact_score_secondary                                      no
+contact_score_grid_prefix                                    {osp.join(pdb_path, 'grid')}
+contact_score_cutoff_distance                                4.5
+contact_score_clash_overlap                                  0.75
+contact_score_clash_penalty                                  50
 grid_score_primary                                           no
 grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
