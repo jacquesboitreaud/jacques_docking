@@ -2,7 +2,7 @@ import os
 import os.path as osp
 import subprocess
 
-from .utils import *
+from scripts.utils import *
 
 """
 Update : 

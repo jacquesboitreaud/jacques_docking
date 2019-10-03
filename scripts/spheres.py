@@ -2,7 +2,7 @@ import subprocess
 import os
 import os.path as osp
 
-from utils import *
+from scripts.utils import *
 
 """ Generates spheres with DMS """
 
