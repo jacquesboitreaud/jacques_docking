@@ -65,6 +65,7 @@ def main(args):
     dock_path = args.dock_path
     pdb_file='receptor.pdb'
 
+    # gros problème, quand on met pdb_file ici ça l'ajoute en argument de la fonction  d'en dessous et ça change le nom du fichier écrit. 
 
     for pdbid in os.listdir(args.pdb):
 
