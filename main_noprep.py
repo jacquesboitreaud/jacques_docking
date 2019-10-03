@@ -50,18 +50,19 @@ def main(args):
     dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
     params_path=args.parameters_path
+    pdb_path = args.pdb
     
     print(">>> GENERATING LIGAND MOL2")
     from_smiles(args.smiles)
 
-    for pdbid in os.listdir(args.pdb):
+    for pdbid in os.listdir(pdb_path):
         
 
         print(">>> MINIMIZING")
-        minimize_contact(pdbid, dock_files, args.lib, dock_path, params_path)
+        minimize_contact(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
 
         print(">>> DOCKING")
-        contact_docking(pdbid, dock_files, args.lib, dock_path, params_path)
+        contact_docking(pdb_path, pdbid, dock_files, args.lib, dock_path, params_path)
 
 
 if __name__ == "__main__":
