@@ -5,6 +5,18 @@ Created on Tue Oct  1 19:42:53 2019
 @author: jacqu
 
 Master docking script
+
+TODO : 
+    add the input smiles parameter to arguments
+    create a contact_docking function
+    change the grid computation to compute two grids (cnt and energy)
+    Be careful the docking is done with the minimized ligand conformation (ligand input file & rmsd)
+    
+    Check all the path parameters if problems
+    Check paths relatives to DOCK setup (/bin, /params)
+    
+    Check we get the same contact score when docking several times the same ligand 
+    
 """
 
 
@@ -29,9 +41,10 @@ def cline():
     parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
     parser.add_argument("-i", "--pdb", default='data/pockets', help="Folder containing PDBs to dock")
     parser.add_argument("-l", "--lib", default='data/library.mol2', help="mol2 file containing ligands")
-    parser.add_argument("-d", "--dock-path", default='/home/mcb/jboitr/dock/dock6', help="Path to dock install.")
+    parser.add_argument("-d", "--dock-path", default='/home/mcb/jboitr/dock/dock6/bin', help="Path to dock install.")
     parser.add_argument("-m", "--molecule-type", default='protein', help="Type of receptor (rna, or protein).")
     parser.add_argument("-a", "--amber-scoring", default=False, help="Use slower but more accurate AMBER scoring.")
+    parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
 
     args = parser.parse_args()
 

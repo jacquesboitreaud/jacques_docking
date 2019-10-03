@@ -94,19 +94,11 @@ def from_smiles(smi):
     """
     Takes SMILES string, generate m3D rpz in mol2 format, adds Hs and saves
     """
-    with open('../data/ligands/mymols.mol2', 'w') as f:
+    with open('../data/ligands/library.mol2', 'w') as f:
         mol = pybel.readstring("smi", smi)
         mol.addh()
         mol.make3D()
         txt = mol.write('mol2')
         f.write(txt)
-        
-        # Add fake entry
-        mol = pybel.readstring("smi", 'c1ccccc1')
-        mol.addh()
-        mol.make3D()
-        txt = mol.write('mol2')
-        f.write(txt)
-        
-        
+         
         f.close()

@@ -1,13 +1,13 @@
 import subprocess
-from scripts.utils import *
 
+from .utils import *
 
-def minimize(pdb_path, pdb_id, write_dir, ligands_path, dock_path, params_path): 
+def minimize(pdb_path, write_dir, dock_path): 
     params = f"""conformer_search_type       rigid
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
-ligand_atom_file                                             {ligands_path}
+ligand_atom_file                                             {add_suffix_new_path(pdb_path, write_dir, '_lig_withH.mol2')}
 limit_max_ligands                                            no
 skip_molecule                                                no
 read_mol_solvation                                           no
@@ -19,16 +19,12 @@ bump_filter                                                  no
 score_molecules                                              yes
 contact_score_primary                                        no
 contact_score_secondary                                      no
-contact_score_grid_prefix                                    {osp.join(pdb_path, pdb_id, 'grid')}
-contact_score_cutoff_distance                                4.5
-contact_score_clash_overlap                                  0.75
-contact_score_clash_penalty                                  50
 grid_score_primary                                           yes
 grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
 grid_score_vdw_scale                                         1
 grid_score_es_scale                                          1
-grid_score_grid_prefix                                       {osp.join(pdb_path, pdb_id, 'grid')}
+grid_score_grid_prefix                                       grid
 multigrid_score_secondary                                    no
 dock3.5_score_secondary                                      no
 continuous_score_secondary                                   no
@@ -52,9 +48,9 @@ simplex_random_seed                                          0
 simplex_restraint_min                                        yes
 simplex_coefficient_restraint                                10.0
 atom_model                                                   all
-vdw_defn_file                                                {osp.join(params_path, 'vdw_AMBER_parm99.defn')}
-flex_defn_file                                               {osp.join(params_path, 'flex.defn')}
-flex_drive_file                                              {osp.join(params_path, 'flex_drive.tbl')}
+vdw_defn_file                                                {osp.join(dock_path, 'parameters/vdw_AMBER_parm99.defn')}
+flex_defn_file                                               {osp.join(dock_path, 'parameters/flex.defn')}
+flex_drive_file                                              {osp.join(dock_path, 'parameters/flex_drive.tbl')}
 ligand_outfile_prefix                                        {add_suffix_new_path(pdb_path, write_dir, '.lig.min')}
 write_orientations                                           no
 num_scored_conformers                                        1
@@ -64,12 +60,10 @@ rank_ligands                                                 no
     with open(osp.join(write_dir, "min.in"), "w") as m:
         m.write(params)
 
-    subprocess.call(["dock6.mpi","-np 1 ", "-i", osp.join(write_dir, "min.in")])
+    subprocess.call(["dock6", "-i", osp.join(write_dir, "min.in")])
 
 
-
-    
-def contact_docking(pdb_path, pdb_id, write_dir, ligands_path, dock_path, params_path):
+def docking(pdb_path, write_dir, ligands_path, dock_path):
 
     params = f"""conformer_search_type              rigid
 use_internal_energy                                          yes
@@ -80,24 +74,20 @@ limit_max_ligands                                            no
 skip_molecule                                                no
 read_mol_solvation                                           no
 calculate_rmsd                                               yes
-use_rmsd_reference_mol                                       no
+use_rmsd_reference_mol                                       {add_suffix_new_path(pdb_path, write_dir, '.lig.min_scored.mol2')}
 use_database_filter                                          no
 orient_ligand                                                yes
 automated_matching                                           yes
-receptor_site_file                                           {osp.join(pdb_path, pdb_id, 'selected_spheres.sph')}
+receptor_site_file                                           {osp.join(write_dir, 'selected_spheres.sph')}
 max_orientations                                             1000
 critical_points                                              no
 chemical_matching                                            no
 use_ligand_spheres                                           no
 bump_filter                                                  no
 score_molecules                                              yes
-contact_score_primary                                        yes
+contact_score_primary                                        no
 contact_score_secondary                                      no
-contact_score_grid_prefix                                    {osp.join(pdb_path, pdb_id, 'grid')}
-contact_score_cutoff_distance                                4.5
-contact_score_clash_overlap                                  0.75
-contact_score_clash_penalty                                  50
-grid_score_primary                                           no
+grid_score_primary                                           yes
 grid_score_secondary                                         no
 grid_score_rep_rad_scale                                     1
 grid_score_vdw_scale                                         1
@@ -125,9 +115,9 @@ simplex_tors_step                                            10.0
 simplex_random_seed                                          0
 simplex_restraint_min                                        no
 atom_model                                                   all
-vdw_defn_file                                                {osp.join(params_path, 'vdw_AMBER_parm99.defn')}
-flex_defn_file                                               {osp.join(params_path, 'flex.defn')}
-flex_drive_file                                              {osp.join(params_path, 'flex_drive.tbl')}
+vdw_defn_file                                                {osp.join(dock_path, 'parameters/vdw_AMBER_parm99.defn')}
+flex_defn_file                                               {osp.join(dock_path, 'parameters/flex.defn')}
+flex_drive_file                                              {osp.join(dock_path, 'parameters/flex_drive.tbl')}
 ligand_outfile_prefix                                        {osp.join(write_dir, 'rigid.out')}
 write_orientations                                           no
 num_scored_conformers                                        1
@@ -136,7 +126,7 @@ rank_ligands                                                 no
 
     with open(osp.join(write_dir, "rigid.in"), "w") as r:
         r.write(params)
-    subprocess.call(["dock6.mpi", "-i", osp.join(write_dir, "rigid.in")])
+    subprocess.call(["dock6", "-i", osp.join(write_dir, "rigid.in")])
 
 def amber_dock(receptor_prefix, ligand_path, work_dir):
     root = os.getcwd()
