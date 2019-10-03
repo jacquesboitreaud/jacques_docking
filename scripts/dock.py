@@ -2,12 +2,12 @@ import subprocess
 from scripts.utils import *
 
 
-def minimize(pdb_path, write_dir, dock_path, params_path): 
+def minimize(pdb_path, write_dir, ligands_path, dock_path, params_path): 
     params = f"""conformer_search_type       rigid
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
-ligand_atom_file                                             {add_suffix_new_path(pdb_path, write_dir, '_lig_withH.mol2')}
+ligand_atom_file                                             {ligands_path}
 limit_max_ligands                                            no
 skip_molecule                                                no
 read_mol_solvation                                           no
