@@ -45,6 +45,7 @@ def cline():
     parser.add_argument("-m", "--molecule-type", default='protein', help="Type of receptor (rna, or protein).")
     parser.add_argument("-a", "--amber-scoring", default=False, help="Use slower but more accurate AMBER scoring.")
     parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
+    parser.add_argument("-p", "--params-path", default='/home/mcb/jboitr/dock/dock6/parameters', help="Path to param files.")
 
     args = parser.parse_args()
 
@@ -63,6 +64,7 @@ def main(args):
 
     dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
+    params_path = args.params_path
 
     # gros problème, quand on met pdb_file ici ça l'ajoute en argument de la fonction  d'en dessous et ça change le nom du fichier écrit. 
 
@@ -82,10 +84,10 @@ def main(args):
         grid(pdbid, dock_files, dock_path)
 
         print(">>> MINIMIZING")
-        minimize(pdbid, dock_files, dock_path)
+        minimize(pdbid, dock_files, dock_path, params_path)
 
         print(">>> DOCKING")
-        docking(pdbid, dock_files, args.lib, dock_path)
+        docking(pdbid, dock_files, args.lib, dock_path, params_path)
 
 
 if __name__ == "__main__":
