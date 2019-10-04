@@ -28,10 +28,9 @@ import uuid
 
 
 from scripts.spheres import spheres
-
 from scripts.boxgrid import box, grid
-
 from scripts.dock import minimize, docking
+from scripts.get_ligands import from_smiles
 
 
 def cline():
@@ -69,6 +68,9 @@ def main(args):
     # gros problème, quand on met pdb_file ici ça l'ajoute en argument de la fonction  d'en dessous et ça change le nom du fichier écrit. 
 
     for pdbid in os.listdir(args.pdb):
+        
+        print(">>> BUILDING LIGAND MOL2")
+        from_smiles(args.smiles)
 
         print(">>> PREPARING RECEPTOR")
         subprocess.call(['chimera', '--nogui', '--script',
