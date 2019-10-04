@@ -44,9 +44,7 @@ def cline():
 
     args = parser.parse_args()
 
-    df=main(args)
-    
-    return df
+    main(args)
 
 
 def main(args):
@@ -92,8 +90,6 @@ def main(args):
             df = pd.DataFrame.from_dict({'can':args.smiles,
                                          str(pdbid): sc})
             df.to_csv(os.path.join('/home/mcb/jboitr/data/scores',pdbid,'.csv'))
-            
-            return df
 
 
 if __name__ == "__main__":
