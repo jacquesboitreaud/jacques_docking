@@ -61,7 +61,7 @@ def main(args):
     
     # Building ligands mol2 file 
     print(">>> BUILDING LIGAND MOL2")
-    if(type(arg.smiles)==str):
+    if(type(args.smiles)==str):
         from_smiles(args.smiles)
     elif(type(args.smiles)==list):
         from_smiles_list(args.smiles)
