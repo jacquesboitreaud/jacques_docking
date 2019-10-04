@@ -41,5 +41,6 @@ write_dir = sys.argv[2]
 print (pdb_path)
 print (write_dir)
 receptor(pdb_path, write_dir)
-ligand(pdb_path, write_dir)
+# Uncomment ligand line to do the ligand part
+#ligand(pdb_path, write_dir)
 pass
