@@ -45,7 +45,7 @@ def main(args):
 
     dock_path = args.dock_path
     params_path = args.params_path
-    DUD_path = '/home/mcb/jboitr/data/DUD'
+    DUD_path = '/home/mcb/jboitr/data/all'
 
 
     for pdbid in os.listdir(DUD_path):
