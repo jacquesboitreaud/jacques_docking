@@ -6,16 +6,12 @@ Created on Tue Oct  1 19:42:53 2019
 
 Master docking script when target preprocessing is already done. 
 
-TODO : 
-    add the input smiles parameter to arguments
-    create a contact_docking function
-    change the grid computation to compute two grids (cnt and energy)
-    Be careful the docking is done with the minimized ligand conformation (ligand input file & rmsd)
+STRUCTURE OF THE DUD DATABASE :
+    /all : directory of all DUD targets 
+    /all/target_ids : targets 
+    /all/target_ids/dock_files : contains all dock preprocessing files
     
-    Check all the path parameters if problems
-    Check paths relatives to DOCK setup (/bin, /params)
-    
-    Check we get the same contact score when docking several times the same ligand 
+data/ligands/library.mol2 : all the ligands to dock
     
 """
 
@@ -55,28 +51,32 @@ def main(args):
     # Create repository for the run and the generated files 
     try:
         os.mkdir(f'runs/{args.name}')
-        os.mkdir(f'runs/{args.name}/dock_files')
     except:
 
         pass
 
-
-    dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
     params_path = args.params_path
+    DUD_path = '/home/mcb/jboitr/data/all'
+    writedir = 'runs/{args.name}'
+    
+    # Building ligands mol2 file 
+    print(">>> BUILDING LIGAND MOL2")
+    from_smiles(args.smiles)
 
-    # gros problème, quand on met pdb_file ici ça l'ajoute en argument de la fonction  d'en dessous et ça change le nom du fichier écrit. 
-
-    for pdbid in os.listdir(args.pdb):
+    for pdbid in os.listdir(DUD_path):
         
-        print(">>> BUILDING LIGAND MOL2")
-        from_smiles(args.smiles)
-
-        print(">>> MINIMIZING")
-        minimize(pdbid, dock_files, dock_path, params_path)
-
-        print(">>> DOCKING")
-        contact_docking(pdbid, dock_files, args.lib, dock_path, params_path)
+        if(pdbid!='esr1'):
+            # ONLY ONE FOR TESTING !
+            next
+        else:
+            
+            dock_files_path=os.path.join(DUD_path,pdbid,'dock_files')
+            print(">>> MINIMIZING")
+            minimize(dock_files_path, writedir, dock_path, params_path)
+    
+            print(">>> DOCKING")
+            contact_docking(dock_files_path, writedir, dock_path, params_path)
 
 
 if __name__ == "__main__":

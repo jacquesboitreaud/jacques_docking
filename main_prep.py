@@ -67,30 +67,25 @@ def main(args):
             pdb_path = f'{target_dir}/receptor.pdb'
             ligand_path = f'{target_dir}/crystal_ligand.mol2'
             
-            """
+            
             print(">>> PREPARING RECEPTOR")
             subprocess.call(['chimera', '--nogui', '--script',
                 f'scripts/prep.py {pdb_path} {dock_files} {ligand_path}'])
-            
             
             # 2/ Create spheres in binding site 
             dms_in = f'{dock_files}/rec_withH.pdb'
             print(">>> CREATING SPHERES")
             spheres(dms_in, dock_files)
             
-            
             # 3 / Creating box around binding site
-            
             print(">>> CREATING BOX")
             box(pdb_path, dock_files)
-            """
+            
             
             # 4 / Creating grids for scoring
             print(">>> CREATING GRID")
             grid(pdb_path, dock_files, dock_path, params_path)
             
-
-
 
 if __name__ == "__main__":
     cline()
