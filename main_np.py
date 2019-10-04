@@ -25,7 +25,7 @@ import uuid
 
 from scripts.spheres import spheres
 from scripts.boxgrid import box, grid
-from scripts.dock_np import minimize, docking, contact_docking
+from scripts.dock import minimize, contact_docking
 from scripts.get_ligands import from_smiles
 
 
