@@ -23,7 +23,7 @@ def receptor(pdb_path, write_path):
 
 def ligand(pdb_path, write_path):
     """
-        Prepare ligand.
+        Prepare biological ligand (if contained in the PBD file)
     """
     runCommand("open %s" % pdb_path)
     runCommand("delete ~ligand")
