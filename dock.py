@@ -12,7 +12,7 @@ import uuid
 
 df = pd.read_csv('/home/mcb/jboitr/data/moses_test.csv', nrows = 100)
 
-smiles = df['can']
+smiles = list(df['can'])
 
 parser=argparse.ArgumentParser()
 parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
