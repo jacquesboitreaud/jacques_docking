@@ -77,17 +77,18 @@ def main(args):
             dms_in = f'{dock_files}/rec_withH.pdb'
             print(">>> CREATING SPHERES")
             spheres(dms_in, dock_files)
-            """
             
-            # 3 / Creating box and scoring grids (contact and energy)
             
-            print(">>> CREATING BOX AND GRID")
+            # 3 / Creating box around binding site
+            
+            print(">>> CREATING BOX")
             box(pdb_path, dock_files)
-    
             """
+            
+            # 4 / Creating grids for scoring
             print(">>> CREATING GRID")
-            grid(pdbid, dock_files, dock_path, params_path)
-            """
+            grid(pdb_path, dock_files, dock_path, params_path)
+            
 
 
 
