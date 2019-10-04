@@ -58,7 +58,7 @@ def main(args):
     dock_path = args.dock_path
     params_path = args.params_path
     DUD_path = '/home/mcb/jboitr/data/all'
-    writedir = 'runs/{args.name}'
+    writedir = f'runs/{args.name}'
     
     # Building ligands mol2 file 
     print(">>> BUILDING LIGAND MOL2")
