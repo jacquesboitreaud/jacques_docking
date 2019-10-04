@@ -9,7 +9,7 @@ Update :
 Modified the input file to compute both energy and contact grids 
 """
 
-def box(pdb_path, write_dir, params_path):
+def box(pdb_path, write_dir):
     params = f"""Y
 8.0
 {osp.join(write_dir, 'selected_spheres.sph')}
@@ -24,7 +24,7 @@ def box(pdb_path, write_dir, params_path):
     print(cmd)
     os.system(cmd)
 
-def grid(pdb_path, write_dir, dock_path):
+def grid(pdb_path, write_dir, dock_path, params_path):
     params = f"""compute_grids        yes
 grid_spacing                              0.4
 output_molecule                           no
