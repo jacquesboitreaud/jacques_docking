@@ -9,7 +9,7 @@ Update :
 Modified the input file to compute both energy and contact grids 
 """
 
-def box(pdb_path, write_dir):
+def box(pdb_path, write_dir, params_path):
     params = f"""Y
 8.0
 {osp.join(write_dir, 'selected_spheres.sph')}
@@ -40,7 +40,7 @@ bump_filter                               yes
 bump_overlap                              0.75
 receptor_file                             {add_suffix_new_path(pdb_path, write_dir, '_rec_withH.mol2')}
 box_file                                  {add_suffix_new_path(pdb_path, write_dir, '.box.pdb')}
-vdw_definition_file                       {dock_path}/parameters/vdw_AMBER_parm99.defn
+vdw_definition_file                       {params_path}/parameters/vdw_AMBER_parm99.defn
 score_grid_prefix                         grid
 """
     

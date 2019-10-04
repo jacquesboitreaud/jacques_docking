@@ -80,7 +80,7 @@ def main(args):
         spheres(pdbid, dock_files)
 
         print(">>> CREATING BOX AND GRID")
-        box(pdbid, dock_files)
+        box(pdbid, dock_files, params_path)
 
         print(">>> CREATING GRID")
         grid(pdbid, dock_files, dock_path)
