@@ -31,9 +31,7 @@ output_molecule                           no
 contact_score                             yes
 energy_score                              yes
 energy_cutoff_distance                    9999
-contact_score_cutoff_distance             4.5
-contact_score_clash_overlap               0.75
-contact_score_clash_penalty               50
+contact_cutoff_distance                   4.5
 atom_model                                a
 attractive_exponent                       6
 repulsive_exponent                        12
