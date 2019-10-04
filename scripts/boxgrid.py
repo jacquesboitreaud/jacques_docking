@@ -40,7 +40,7 @@ dielectric_factor                         4
 bump_filter                               yes
 bump_overlap                              0.75
 receptor_file                             {os.path.join(write_dir, 'rec_withH.mol2')}
-box_file                                  {os.path.join(pdb_path, write_dir, '.box.pdb')}
+box_file                                  {os.path.join(write_dir, 'receptor.box.pdb')}
 vdw_definition_file                       {params_path}/vdw_AMBER_parm99.defn
 score_grid_prefix                         {osp.join(write_dir,'grid')}
 """
