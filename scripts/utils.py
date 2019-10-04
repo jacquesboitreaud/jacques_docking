@@ -9,3 +9,4 @@ def add_suffix_kill_prefix(path, suffix):
 def add_suffix_new_path(path, new_path, suffix):
     _, su = osp.split(path)
     return osp.join(new_path, su.split('.')[0] + suffix)
+

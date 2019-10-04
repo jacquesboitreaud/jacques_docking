@@ -4,7 +4,18 @@ Created on Tue Oct  1 19:42:53 2019
 
 @author: jacqu
 
-Master script for only processing targets. No docking.  
+Master docking script when target preprocessing is already done. 
+
+TODO : 
+    add the input smiles parameter to arguments
+    create a contact_docking function
+    change the grid computation to compute two grids (cnt and energy)
+    Be careful the docking is done with the minimized ligand conformation (ligand input file & rmsd)
+    
+    Check all the path parameters if problems
+    Check paths relatives to DOCK setup (/bin, /params)
+    
+    Check we get the same contact score when docking several times the same ligand 
     
 """
 
@@ -18,7 +29,7 @@ import uuid
 
 from scripts.spheres import spheres
 from scripts.boxgrid import box, grid
-from scripts.dock import minimize, docking, contact_docking
+from scripts.dock_np import minimize, docking, contact_docking
 from scripts.get_ligands import from_smiles
 
 
@@ -41,37 +52,31 @@ def cline():
 
 
 def main(args):
+    # Create repository for the run and the generated files 
+    try:
+        os.mkdir(f'runs/{args.name}')
+        os.mkdir(f'runs/{args.name}/dock_files')
+    except:
+
+        pass
 
 
+    dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
     params_path = args.params_path
 
+    # gros problème, quand on met pdb_file ici ça l'ajoute en argument de la fonction  d'en dessous et ça change le nom du fichier écrit. 
 
     for pdbid in os.listdir(args.pdb):
         
-        # Get receptor name : 
-        receptor = pdbid.rstrip('.pdb')
-        try:
-            os.mkdir(f'targets/{receptor}')
-            os.mkdir(f'targets/{receptor}/dock_files')
-        except:
-            pass
-        
-        dock_files = f'runs/{receptor}/dock_files'
-        
-        print(">>> PREPARING RECEPTOR")
-        subprocess.call(['chimera', '--nogui', '--script',
-            f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
-    
-        print(">>> CREATING SPHERES")
-        spheres(pdbid, dock_files)
+        print(">>> BUILDING LIGAND MOL2")
+        from_smiles(args.smiles)
 
-        print(">>> CREATING BOX AND GRID")
-        box(pdbid, dock_files)
+        print(">>> MINIMIZING")
+        minimize(pdbid, dock_files, dock_path, params_path)
 
-        print(">>> CREATING GRID")
-        grid(pdbid, dock_files, dock_path, params_path)
-
+        print(">>> DOCKING")
+        contact_docking(pdbid, dock_files, args.lib, dock_path, params_path)
 
 
 if __name__ == "__main__":
