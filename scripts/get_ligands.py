@@ -115,4 +115,4 @@ def from_smiles_list(smi):
             txt = mol.write('mol2')
             f.write(txt)
              
-            f.close()
+        f.close()
