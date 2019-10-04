@@ -21,12 +21,13 @@ import sys
 import subprocess
 import argparse
 import uuid
-
+import pandas as pd
 
 from scripts.spheres import spheres
 from scripts.boxgrid import box, grid
 from scripts.dock import minimize, contact_docking
 from scripts.get_ligands import from_smiles, from_smiles_list
+from scripts.score import parse_scores
 
 
 def cline():
@@ -82,6 +83,13 @@ def main(args):
     
             print(">>> DOCKING")
             contact_docking(dock_files_path, writedir, dock_path, params_path)
+            
+            print(">>> PARSING SCORES")
+            sc = parse_scores(writedir)
+            
+            df = pd.DataFrame.from_dict({'can':args.smiles,
+                                         str(pdbid): sc})
+            df.to_csv(os.path.join('/home/mcb/jboitr/data/scores',pdbid,'.csv'))
 
 
 if __name__ == "__main__":
