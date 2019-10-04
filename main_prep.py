@@ -62,18 +62,22 @@ def main(args):
             except:
                 pass
             
+            # 1/ Prepare receptor and ligand
             dock_files = f'{target_dir}/dock_files'
             pdb_path = f'{target_dir}/receptor.pdb'
             ligand_path = f'{target_dir}/crystal_ligand.mol2'
             
+            """
             print(">>> PREPARING RECEPTOR")
             subprocess.call(['chimera', '--nogui', '--script',
                 f'scripts/prep.py {pdb_path} {dock_files} {ligand_path}'])
-    
             """
+            
+            # 2/ Create spheres in binding site 
+            dms_in = f'{dock_files}/rec_withH.pdb'
             print(">>> CREATING SPHERES")
-            spheres(pdbid, dock_files)
-    
+            spheres(dms_in, dock_files)
+            """
             print(">>> CREATING BOX AND GRID")
             box(pdbid, dock_files)
     

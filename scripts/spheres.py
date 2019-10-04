@@ -6,12 +6,19 @@ from scripts.utils import *
 
 """ Generates spheres with DMS """
 
-def spheres(pdb_path, write_dir):
+def spheres(dms_in, write_dir):
+    """
     dms_path = add_suffix_kill_prefix(pdb_path, ".dms")
     sphere_path = add_suffix_kill_prefix(pdb_path, '_rec.sph')
     dms_in = add_suffix_kill_prefix(pdb_path, "_rec_withH.pdb")
+    """
+    # dms input: rec_with_h.pdb
+    # spheres path : write_dir + rec.sph
+    sphere_path=os.path.join(write_dir,'_rec.sph')
+    dms_path = f'{ch_suffix(dms_in,{dms})}'
+    
 
-    root = os.getcwd()
+    root = os.getcwd() # get the current working directory
     os.chdir(write_dir)
     print(">>> Calling DMS")
     #generate surface
@@ -35,6 +42,6 @@ X
     print(">>> Calling sphere_selector")
     #select on binding site
     subprocess.call(["sphere_selector", sphere_path,\
-        f"{add_suffix_kill_prefix(pdb_path, '_lig_withH.mol2')}",  "10.0"])
+        f"{os.path.join(write_dir, '_lig_withH.mol2')}",  "10.0"])
     os.chdir(root)
     pass

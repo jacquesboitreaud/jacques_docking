@@ -10,3 +10,6 @@ def add_suffix_new_path(path, new_path, suffix):
     _, su = osp.split(path)
     return osp.join(new_path, su.split('.')[0] + suffix)
 
+def ch_suffix(path, suffix):
+    pre, su = osp.split(path)
+    return pre+'.'+suffix
