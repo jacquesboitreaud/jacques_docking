@@ -63,7 +63,6 @@ def main(args):
 
     dock_files = f'runs/{args.name}/dock_files'
     dock_path = args.dock_path
-    pdb_file='receptor.pdb'
 
     # gros problème, quand on met pdb_file ici ça l'ajoute en argument de la fonction  d'en dessous et ça change le nom du fichier écrit. 
 
@@ -71,7 +70,7 @@ def main(args):
 
         print(">>> PREPARING RECEPTOR")
         subprocess.call(['chimera', '--nogui', '--script',
-            f'scripts/prep.py {os.path.join(args.pdb, pdbid, pdb_file)} {dock_files}'])
+            f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
     
         print(">>> CREATING SPHERES")
         spheres(pdbid, dock_files)
