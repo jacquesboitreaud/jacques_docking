@@ -56,15 +56,15 @@ def main(args):
         else:
         
             # Get receptor name : 
-            os.chdir(os.path.join(DUD_path,pdbid))
+            target_dir=os.path.join(DUD_path,pdbid)
             try:
-                os.mkdir(f'dock_files')
+                os.mkdir(f'{target_dir}/dock_files')
             except:
                 pass
             
-            dock_files = f'dock_files'
-            pdb_path = f'receptor.pdb'
-            ligand_path = f'crystal_ligand.mol2'
+            dock_files = f'{target_dir}/dock_files'
+            pdb_path = f'{target_dir}/receptor.pdb'
+            ligand_path = f'{target_dir}/crystal_ligand.mol2'
             
             print(">>> PREPARING RECEPTOR")
             subprocess.call(['chimera', '--nogui', '--script',
