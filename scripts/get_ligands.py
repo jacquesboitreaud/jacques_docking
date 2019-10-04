@@ -102,3 +102,17 @@ def from_smiles(smi):
         f.write(txt)
          
         f.close()
+        
+def from_smiles_list(smi):
+    """
+    Takes SMILES LIST input, adds Hs on each mol, generates 3D rpz in mol2 format and saves
+    """
+    with open('../data/ligands/library.mol2', 'w') as f:
+        for s in smi:
+            mol = pybel.readstring("smi", smi)
+            mol.addh()
+            mol.make3D()
+            txt = mol.write('mol2')
+            f.write(txt)
+             
+            f.close()

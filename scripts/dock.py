@@ -187,5 +187,5 @@ rank_ligands                                                 no
 
     subprocess.call(['dock6.mpi', 'dock.in'])
 
-    os.chidr(root)
+    os.chdir(root)
     pass

@@ -26,7 +26,7 @@ import uuid
 from scripts.spheres import spheres
 from scripts.boxgrid import box, grid
 from scripts.dock import minimize, contact_docking
-from scripts.get_ligands import from_smiles
+from scripts.get_ligands import from_smiles, from_smiles_list
 
 
 def cline():
@@ -34,13 +34,12 @@ def cline():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
-    parser.add_argument("-i", "--pdb", default='/home/mcb/jboitr/data/pockets', help="Folder containing PDBs to dock")
-    parser.add_argument("-l", "--lib", default='/home/mcb/jboitr/data/ligands/library.mol2', help="mol2 file containing ligands")
+    parser.add_argument("-i", "--pdb", default='esr1', help="DUD identifier of target to dock")
     parser.add_argument("-d", "--dock-path", default='/home/mcb/jboitr/dock/dock6/bin', help="Path to dock install.")
     parser.add_argument("-m", "--molecule-type", default='protein', help="Type of receptor (rna, or protein).")
     parser.add_argument("-a", "--amber-scoring", default=False, help="Use slower but more accurate AMBER scoring.")
-    parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
     parser.add_argument("-p", "--params-path", default='/home/mcb/jboitr/dock/dock6/parameters', help="Path to param files.")
+    parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
 
     args = parser.parse_args()
 
@@ -62,7 +61,13 @@ def main(args):
     
     # Building ligands mol2 file 
     print(">>> BUILDING LIGAND MOL2")
-    from_smiles(args.smiles)
+    if(type(arg.smiles)==str):
+        from_smiles(args.smiles)
+    elif(type(args.smiles)==list):
+        from_smiles_list(args.smiles)
+    else:
+        print('Unsupported smiles input')
+        return
 
     for pdbid in os.listdir(DUD_path):
         
