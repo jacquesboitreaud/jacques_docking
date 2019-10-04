@@ -45,27 +45,32 @@ def main(args):
 
     dock_path = args.dock_path
     params_path = args.params_path
+    DUD_path = '/home/mcb/jboitr/data/DUD'
 
 
-    for pdbid in os.listdir(args.pdb):
+    for pdbid in os.listdir(DUD_path):
         
-        if(pdbid!='esr1.pdb'):
+        if(pdbid!='esr1'):
+            # ONLY ONE FOR TESTING !
             next
         else:
         
             # Get receptor name : 
-            receptor = pdbid.rstrip('.pdb')
+            os.chdir(os.path.join(DUD_path,pdbid))
             try:
-                os.mkdir(f'targets/dock_files/{receptor}')
+                os.mkdir(f'dock_files')
             except:
                 pass
             
-            dock_files = f'targets/dock_files/{receptor}'
+            dock_files = f'dock_files'
+            pdb_path = f'receptor.pdb'
+            ligand_path = f'crystal_ligand.mol2'
             
             print(">>> PREPARING RECEPTOR")
             subprocess.call(['chimera', '--nogui', '--script',
-                f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
-        
+                f'scripts/prep.py {pdb_path} {dock_files} {ligand_path}'])
+    
+            """
             print(">>> CREATING SPHERES")
             spheres(pdbid, dock_files)
     
@@ -74,6 +79,7 @@ def main(args):
     
             print(">>> CREATING GRID")
             grid(pdbid, dock_files, dock_path, params_path)
+            """
 
 
 

@@ -10,27 +10,31 @@ from utils import add_suffix_new_path
 
 def receptor(pdb_path, write_path):
     """
-        Prepare receptor.
+        Prepare receptor:
+            Opens DUD/target/receptor.pdb
+            Saves to dock_files/rec_with_H...
     """
     runCommand("open %s" % pdb_path)
     runCommand("delete ligand")
     runCommand("delete ions")
     runCommand("addh")
     runCommand("addcharge all method gas")
-    runCommand("write format mol2 #0 %s" % add_suffix_new_path(pdb_path, write_path, "_rec_withH.mol2"))
-    runCommand("write format pdb #0 %s" % add_suffix_new_path(pdb_path, write_path, "_rec_withH.pdb"))
+    runCommand("write format mol2 #0 %s" % os.path.join(write_path, "rec_withH.mol2"))
+    runCommand("write format pdb #0 %s" % os.path.join(write_path,"rec_withH.pdb"))
     pass
 
-def ligand(pdb_path, write_path):
+def ligand(lig_path, write_path):
     """
-        Prepare biological ligand (if contained in the PBD file)
+        Prepare biological ligand
+        Opens ligand pdb path (TO DEFINE)
+        Saves in dock_files/lig_withH.mol2
     """
     runCommand("open %s" % pdb_path)
     runCommand("delete ~ligand")
     runCommand("delete ions")
     runCommand("addh")
     runCommand("addcharge all method gas")
-    runCommand("write format mol2 #1 %s" % add_suffix_new_path(pdb_path,write_path, "_lig_withH.mol2"))
+    runCommand("write format mol2 #1 %s" % os.path.join(write_path, "lig_withH.mol2"))
     pass
 
 def run(pdb_path):
@@ -38,9 +42,9 @@ def run(pdb_path):
 
 pdb_path = sys.argv[1]
 write_dir = sys.argv[2]
+ligand_path = sys.argv[3]
 print (pdb_path)
 print (write_dir)
 receptor(pdb_path, write_dir)
-# Uncomment ligand line to do the ligand part
-#ligand(pdb_path, write_dir)
+ligand(ligand_path, write_dir)
 pass
