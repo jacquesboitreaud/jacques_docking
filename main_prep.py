@@ -27,7 +27,7 @@ def cline():
     parser = argparse.ArgumentParser()
 
     parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
-    parser.add_argument("-i", "--pdb", default='/home/mcb/jboitr/data/pockets', help="Folder containing PDBs to dock")
+    parser.add_argument("-i", "--pdb", default='/home/mcb/jboitr/jacques_docking/targets', help="Folder containing PDBs to dock")
     parser.add_argument("-l", "--lib", default='/home/mcb/jboitr/data/ligands/library.mol2', help="mol2 file containing ligands")
     parser.add_argument("-d", "--dock-path", default='/home/mcb/jboitr/dock/dock6/bin', help="Path to dock install.")
     parser.add_argument("-m", "--molecule-type", default='protein', help="Type of receptor (rna, or protein).")
@@ -52,12 +52,11 @@ def main(args):
         # Get receptor name : 
         receptor = pdbid.rstrip('.pdb')
         try:
-            os.mkdir(f'targets/{receptor}')
-            os.mkdir(f'targets/{receptor}/dock_files')
+            os.mkdir(f'targets/dock_files/{receptor}')
         except:
             pass
         
-        dock_files = f'targets/{receptor}/dock_files'
+        dock_files = f'targets/dock_files/{receptor}'
         
         print(">>> PREPARING RECEPTOR")
         subprocess.call(['chimera', '--nogui', '--script',
