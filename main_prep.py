@@ -49,27 +49,31 @@ def main(args):
 
     for pdbid in os.listdir(args.pdb):
         
-        # Get receptor name : 
-        receptor = pdbid.rstrip('.pdb')
-        try:
-            os.mkdir(f'targets/dock_files/{receptor}')
-        except:
-            pass
+        if(pdbid!='esr1.pdb'):
+            next
+        else:
         
-        dock_files = f'targets/dock_files/{receptor}'
+            # Get receptor name : 
+            receptor = pdbid.rstrip('.pdb')
+            try:
+                os.mkdir(f'targets/dock_files/{receptor}')
+            except:
+                pass
+            
+            dock_files = f'targets/dock_files/{receptor}'
+            
+            print(">>> PREPARING RECEPTOR")
+            subprocess.call(['chimera', '--nogui', '--script',
+                f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
         
-        print(">>> PREPARING RECEPTOR")
-        subprocess.call(['chimera', '--nogui', '--script',
-            f'scripts/prep.py {os.path.join(args.pdb, pdbid)} {dock_files}'])
+            print(">>> CREATING SPHERES")
+            spheres(pdbid, dock_files)
     
-        print(">>> CREATING SPHERES")
-        spheres(pdbid, dock_files)
-
-        print(">>> CREATING BOX AND GRID")
-        box(pdbid, dock_files)
-
-        print(">>> CREATING GRID")
-        grid(pdbid, dock_files, dock_path, params_path)
+            print(">>> CREATING BOX AND GRID")
+            box(pdbid, dock_files)
+    
+            print(">>> CREATING GRID")
+            grid(pdbid, dock_files, dock_path, params_path)
 
 
 
