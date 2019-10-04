@@ -41,7 +41,7 @@ bump_filter                               yes
 bump_overlap                              0.75
 receptor_file                             {add_suffix_new_path(pdb_path, write_dir, '_rec_withH.mol2')}
 box_file                                  {add_suffix_new_path(pdb_path, write_dir, '.box.pdb')}
-vdw_definition_file                       {params_path}/parameters/vdw_AMBER_parm99.defn
+vdw_definition_file                       {params_path}/vdw_AMBER_parm99.defn
 score_grid_prefix                         grid
 """
     
