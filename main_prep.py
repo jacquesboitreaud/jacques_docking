@@ -80,10 +80,10 @@ def main(args):
         spheres(pdbid, dock_files)
 
         print(">>> CREATING BOX AND GRID")
-        box(pdbid, dock_files, params_path)
+        box(pdbid, dock_files)
 
         print(">>> CREATING GRID")
-        grid(pdbid, dock_files, dock_path)
+        grid(pdbid, dock_files, dock_path, params_path)
 
         print(">>> MINIMIZING")
         minimize(pdbid, dock_files, dock_path, params_path)
