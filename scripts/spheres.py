@@ -15,7 +15,7 @@ def spheres(dms_in, write_dir):
     # dms input: rec_with_h.pdb
     # spheres path : write_dir + rec.sph
     sphere_path=os.path.join(write_dir,'_rec.sph')
-    dms_path = f'{ch_suffix(dms_in,{dms})}'
+    dms_path = f'{ch_suffix({dms_in},dms)}'
     
 
     root = os.getcwd() # get the current working directory
