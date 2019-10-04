@@ -29,7 +29,7 @@ import uuid
 
 from scripts.spheres import spheres
 from scripts.boxgrid import box, grid
-from scripts.dock import minimize, docking
+from scripts.dock import minimize, docking, contact_docking
 from scripts.get_ligands import from_smiles
 
 
@@ -89,7 +89,7 @@ def main(args):
         minimize(pdbid, dock_files, dock_path, params_path)
 
         print(">>> DOCKING")
-        docking(pdbid, dock_files, args.lib, dock_path, params_path)
+        contact_docking(pdbid, dock_files, args.lib, dock_path, params_path)
 
 
 if __name__ == "__main__":
