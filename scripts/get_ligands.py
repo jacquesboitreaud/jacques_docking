@@ -109,7 +109,7 @@ def from_smiles_list(smi):
     """
     with open('../data/ligands/library.mol2', 'w') as f:
         for s in smi:
-            mol = pybel.readstring("smi", smi)
+            mol = pybel.readstring("smi", s)
             mol.addh()
             mol.make3D()
             txt = mol.write('mol2')
