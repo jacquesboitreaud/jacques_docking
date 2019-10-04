@@ -57,7 +57,7 @@ def main(args):
         except:
             pass
         
-        dock_files = f'runs/{receptor}/dock_files'
+        dock_files = f'targets/{receptor}/dock_files'
         
         print(">>> PREPARING RECEPTOR")
         subprocess.call(['chimera', '--nogui', '--script',
