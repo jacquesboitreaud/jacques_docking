@@ -24,5 +24,7 @@ parser.add_argument("-p", "--params-path", default='/home/mcb/jboitr/dock/dock6/
 parser.add_argument("-s", "--smiles", default='c1ccccc1', help="SMILES string of ligand to dock")
 args = parser.parse_args()
 
+args.smiles=smiles
+
 main(args)
 

@@ -89,7 +89,7 @@ def main(args):
             
             df = pd.DataFrame.from_dict({'can':args.smiles,
                                          str(pdbid): sc})
-            df.to_csv(os.path.join('/home/mcb/jboitr/data/scores',pdbid,'.csv'))
+            df.to_csv(os.path.join('/home/mcb/jboitr/data/scores','{pdbid}.csv'))
 
 
 if __name__ == "__main__":
