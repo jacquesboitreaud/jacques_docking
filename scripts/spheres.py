@@ -42,6 +42,6 @@ X
     print(">>> Calling sphere_selector")
     #select on binding site
     subprocess.call(["sphere_selector", sphere_path,\
-        f"{os.path.join(write_dir, '_lig_withH.mol2')}",  "10.0"])
+        f"{os.path.join(write_dir, 'lig_withH.mol2')}",  "10.0"])
     os.chdir(root)
     pass
