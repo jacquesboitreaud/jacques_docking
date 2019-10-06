@@ -16,6 +16,9 @@ use_rmsd_reference_mol                                       no
 use_database_filter                                          no
 orient_ligand                                                no
 bump_filter                                                  yes
+bump_grid_prefix                                             {osp.join(dock_files_path,"grid")}
+max_bumps_anchor                                             2
+max_bumps_growth                                             2
 score_molecules                                              yes
 contact_score_primary                                        no
 contact_score_secondary                                      no
