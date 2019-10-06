@@ -14,7 +14,7 @@ read_mol_solvation                                           no
 calculate_rmsd                                               yes
 use_rmsd_reference_mol                                       no
 use_database_filter                                          no
-orient_ligand                                                no
+orient_ligand                                                yes
 bump_filter                                                  yes
 bump_grid_prefix                                             {osp.join(dock_files_path,"grid")}
 max_bumps_anchor                                             2
