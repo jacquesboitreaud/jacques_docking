@@ -60,6 +60,7 @@ def main(args):
     DUD_path = '/home/mcb/jboitr/data/all'
     writedir = f'runs/{args.name}'
     
+    """
     # Building ligands mol2 file 
     print(">>> BUILDING LIGAND MOL2")
     if(type(args.smiles)==str):
@@ -69,6 +70,7 @@ def main(args):
     else:
         print('Unsupported smiles input')
         return
+    """
 
     for pdbid in os.listdir(DUD_path):
         
