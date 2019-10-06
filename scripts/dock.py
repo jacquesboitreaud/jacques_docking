@@ -2,6 +2,14 @@ import subprocess
 
 from .utils import *
 
+##### Idea : change parameters to add bump filter. 
+# The following parameters should be added : 
+"""
+bump_grid_prefix                                             {osp.join(dock_files_path,"grid")}
+max_bumps_anchor                                             2
+max_bumps_growth                                             2
+"""
+
 def minimize(dock_files_path, write_dir, dock_path, params_path): 
     params = f"""conformer_search_type       rigid
 use_internal_energy                                          yes
@@ -14,11 +22,8 @@ read_mol_solvation                                           no
 calculate_rmsd                                               yes
 use_rmsd_reference_mol                                       no
 use_database_filter                                          no
-orient_ligand                                                yes
-bump_filter                                                  yes
-bump_grid_prefix                                             {osp.join(dock_files_path,"grid")}
-max_bumps_anchor                                             2
-max_bumps_growth                                             2
+orient_ligand                                                no
+bump_filter                                                  no
 score_molecules                                              yes
 contact_score_primary                                        no
 contact_score_secondary                                      no
