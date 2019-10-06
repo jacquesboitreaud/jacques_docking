@@ -15,7 +15,7 @@ calculate_rmsd                                               yes
 use_rmsd_reference_mol                                       no
 use_database_filter                                          no
 orient_ligand                                                no
-bump_filter                                                  no
+bump_filter                                                  yes
 score_molecules                                              yes
 contact_score_primary                                        no
 contact_score_secondary                                      no
