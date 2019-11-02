@@ -22,6 +22,7 @@ pruning_use_clustering                                       yes
 pruning_max_orients                                          100
 pruning_clustering_cutoff                                    100
 use_clash_overlap                                            yes
+clash_overlap                                                1
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -94,6 +95,7 @@ pruning_use_clustering                                       yes
 pruning_max_orients                                          100
 pruning_clustering_cutoff                                    100
 use_clash_overlap                                            yes
+clash_overlap                                                1
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
