@@ -17,6 +17,7 @@ def minimize(dock_files_path, write_dir, dock_path, params_path):
 user_specified_anchor                                        no
 limit_max_anchors                                            yes
 max_anchor_num                                               1
+min_anchor_size                                              5
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -84,6 +85,7 @@ def contact_docking(dock_files_path, write_dir, dock_path, params_path):
 user_specified_anchor                                        no
 limit_max_anchors                                            yes
 max_anchor_num                                               1
+min_anchor_size                                              5
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
