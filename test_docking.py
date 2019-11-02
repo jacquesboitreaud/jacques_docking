@@ -5,14 +5,18 @@ Created on Fri Oct  4 18:20:49 2019
 @author: jacqu
 """
 from main_np import main
-import pandas as pd 
+import numpy as np
 import argparse
 import uuid
 
 
-df = pd.read_csv('/home/mcb/jboitr/data/DUDE_test.csv')
+test_mols = np.load('DUDE_test.npy', allow_pickle=True).item()
 
-smiles = list(df['can'])
+actives = list(test_mols['a'])
+decoys = list(test_mols['d'])
+
+# Start with docking actives
+smiles = actives
 
 parser=argparse.ArgumentParser()
 parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
