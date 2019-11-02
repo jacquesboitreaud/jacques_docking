@@ -72,10 +72,12 @@ def main(args):
             subprocess.call(['chimera', '--nogui', '--script',
                 f'scripts/prep.py {pdb_path} {dock_files} {ligand_path}'])
             
+            """
             # 2/ Create spheres in binding site 
             dms_in = f'{dock_files}/rec_withH.pdb'
             print(">>> CREATING SPHERES")
             spheres(dms_in, dock_files)
+            """
             
             # 3 / Creating box around binding site
             print(">>> CREATING BOX")
