@@ -2,16 +2,18 @@ import subprocess
 
 from .utils import *
 
-##### Idea : change parameters to add bump filter. 
-# The following parameters should be added : 
+##### TODO  : change parameters to add bump filter. 
+# The following parameters should be added 
 """
 bump_grid_prefix                                             {osp.join(dock_files_path,"grid")}
 max_bumps_anchor                                             2
 max_bumps_growth                                             2
 """
 
+# Functions 
+
 def minimize(dock_files_path, write_dir, dock_path, params_path): 
-    params = f"""conformer_search_type       rigid
+    params = f"""conformer_search_type       flexible
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -75,7 +77,7 @@ def contact_docking(dock_files_path, write_dir, dock_path, params_path):
     # Contact scoring only
     # Uses the minimized ligand mol2, computed previously and stored in the run's directory (write_dir).
 
-    params = f"""conformer_search_type              rigid
+    params = f"""conformer_search_type              flexible
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -128,21 +130,21 @@ atom_model                                                   all
 vdw_defn_file                                                {osp.join(params_path, 'vdw_AMBER_parm99.defn')}
 flex_defn_file                                               {osp.join(params_path, 'flex.defn')}
 flex_drive_file                                              {osp.join(params_path, 'flex_drive.tbl')}
-ligand_outfile_prefix                                        {osp.join(write_dir, 'rigid.out')}
+ligand_outfile_prefix                                        {osp.join(write_dir, 'flexible.out')}
 write_orientations                                           no
 num_scored_conformers                                        1
 rank_ligands                                                 no
 """
 
-    with open(osp.join(write_dir, "rigid.in"), "w") as r:
+    with open(osp.join(write_dir, "flexible.in"), "w") as r:
         r.write(params)
-    subprocess.call(["dock6.mpi", "-i", osp.join(write_dir, "rigid.in"), "-o", osp.join(write_dir, "rigid.out")])
+    subprocess.call(["dock6.mpi", "-i", osp.join(write_dir, "flexible.in"), "-o", osp.join(write_dir, "flexible.out")])
 
 def amber_dock(receptor_prefix, ligand_path, work_dir):
     root = os.getcwd()
     os.chdir(work_dir)
 
-    params = f"""conformer_search_type                                        rigid
+    params = f"""conformer_search_type                                        flexible
 use_internal_energy                                          no
 ligand_atom_file                                             {add_suffix(ligand_path, '.amber_score.mol2')}
 limit_max_ligands                                            no

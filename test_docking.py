@@ -1,39 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Oct  5 12:46:22 2019
+Created on Fri Oct  4 18:20:49 2019
 
 @author: jacqu
-
-Reading top targets' data in binding db database.
-Compare the binding scores computed to these assayed values 
- 
 """
 from main_np import main
 import pandas as pd 
 import argparse
 import uuid
-import numpy as np
 
 
+df = pd.read_csv('/home/mcb/jboitr/data/DUDE_test.csv')
 
-# Most frequent targets 
-
-top = pd.read_csv('/home/mcb/jboitr/data/top100.csv')
-targets = np.unique(list(top['target']))
-
-# Find all drugs which have esr1 aff data in BDB
-
-esr1=top[top['target']=='Estrogen receptor']
-
-esr_kis = esr1.loc[:,['SMILES','Ki']]
-
-# Drop all which don't have a KI and sort from bigger to smaller 
-esr_kis=esr_kis.dropna()
-esr_kis = esr_kis.sort_values(by='Ki', axis=0, ascending=False)
-
-# Launch docking for these molecules 
-
-smiles = list(esr_kis['SMILES'])
+smiles = list(df['can'])
 
 parser=argparse.ArgumentParser()
 parser.add_argument("-n", "--name", default=str(uuid.uuid4())[:8], help="Run ID. (default random ID)")
@@ -48,10 +27,4 @@ args = parser.parse_args()
 args.smiles=smiles
 
 main(args)
-
-
-
-
-
-
 
