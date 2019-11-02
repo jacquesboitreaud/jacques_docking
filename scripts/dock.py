@@ -18,6 +18,10 @@ user_specified_anchor                                        no
 limit_max_anchors                                            yes
 max_anchor_num                                               1
 min_anchor_size                                              5
+pruning_use_clustering                                       yes
+pruning_max_orients                                          100
+pruning_clustering_cutoff                                    100
+use_clash_overlap                                            yes
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -86,6 +90,10 @@ user_specified_anchor                                        no
 limit_max_anchors                                            yes
 max_anchor_num                                               1
 min_anchor_size                                              5
+pruning_use_clustering                                       yes
+pruning_max_orients                                          100
+pruning_clustering_cutoff                                    100
+use_clash_overlap                                            yes
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
