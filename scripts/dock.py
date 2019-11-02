@@ -34,6 +34,13 @@ calculate_rmsd                                               yes
 use_rmsd_reference_mol                                       no
 use_database_filter                                          no
 orient_ligand                                                yes
+automated_matching                                           yes
+receptor_site_file                                           {osp.join(dock_files_path, 'selected_spheres.sph')}
+receptor_site_file                                           {osp.join(dock_files_path, 'selected_spheres.sph')}
+max_orientations                                             1000
+critical_points                                              no
+chemical_matching                                            no
+use_ligand_spheres                                           no
 bump_filter                                                  no
 score_molecules                                              yes
 contact_score_primary                                        no
