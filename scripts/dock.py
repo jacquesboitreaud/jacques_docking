@@ -16,7 +16,7 @@ def minimize(dock_files_path, write_dir, dock_path, params_path):
     params = f"""conformer_search_type       flex
 user_specified_anchor                                        no
 limit_max_anchors                                            yes
-max_anchor_num                                               1
+max_anchor_num                                               10
 min_anchor_size                                              5
 pruning_use_clustering                                       yes
 pruning_max_orients                                          100
