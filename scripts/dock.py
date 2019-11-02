@@ -13,7 +13,7 @@ max_bumps_growth                                             2
 # Functions 
 
 def minimize(dock_files_path, write_dir, dock_path, params_path): 
-    params = f"""conformer_search_type       flexible
+    params = f"""conformer_search_type       flex
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -77,7 +77,7 @@ def contact_docking(dock_files_path, write_dir, dock_path, params_path):
     # Contact scoring only
     # Uses the minimized ligand mol2, computed previously and stored in the run's directory (write_dir).
 
-    params = f"""conformer_search_type              flexible
+    params = f"""conformer_search_type              flex
 use_internal_energy                                          yes
 internal_energy_rep_exp                                      12
 internal_energy_cutoff                                       100.0
@@ -144,7 +144,7 @@ def amber_dock(receptor_prefix, ligand_path, work_dir):
     root = os.getcwd()
     os.chdir(work_dir)
 
-    params = f"""conformer_search_type                                        flexible
+    params = f"""conformer_search_type                                        flex
 use_internal_energy                                          no
 ligand_atom_file                                             {add_suffix(ligand_path, '.amber_score.mol2')}
 limit_max_ligands                                            no
